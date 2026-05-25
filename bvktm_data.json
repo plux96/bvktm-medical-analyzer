@@ -100,7 +100,9 @@
       "qayta_yotqizish_foiz": 0.0,
       "infeksiya_ko_rsatkich": 0.0,
       "bemor_qoniqish_ball": 0.0,
-      "jihozlar_royxati": [],
+      "jihozlar_royxati": [
+        "EKG"
+      ],
       "asosiy_protseduralar": [],
       "davolanadigan_kasalliklar": [],
       "reanimatsiya_bor": false,
@@ -1520,7 +1522,7 @@
     "kunduzgi_statsionar_o_rinlar": 0
   },
   "poliklinika": {
-    "smenada_qabul_sig_imi": 0,
+    "smenada_qabul_sig_imi": 1,
     "mutaxassisliklar_soni": 0,
     "mutaxassisliklar_royxati": [],
     "poliklinika_shifokorlar": 0,
