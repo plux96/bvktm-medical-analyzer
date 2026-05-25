@@ -277,7 +277,10 @@
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
       "talim_baza": true,
-      "yangi_texnologiyalar": [],
+      "yangi_texnologiyalar": [
+        "Оценить клиническую безопасность и потенциальную эффективность легочного баллона с лекарственным покрытием (DCB) компании Aeroflow Medical для лечения тяжелой астмы",
+        "хронического бронхита и эмфиземы у пациентов с ХОБЛ."
+      ],
       "rejalashtirilgan_yangiliklar": [
         "O‘pka sarkoidozi diagnostikasida IL-2",
         "IL-8 interleykinlarni miqdoriy aniqlab",
