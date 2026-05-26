@@ -1310,7 +1310,7 @@
       "tashkil_etilgan_yil": 0,
       "qavat": 1,
       "xonalar_raqami": "",
-      "maydon_m2": 0.0,
+      "maydon_m2": 295.29,
       "telefon": "",
       "ish_vaqti": "",
       "bemorlar_kuniga": 0,
@@ -1323,7 +1323,10 @@
       "qayta_yotqizish_foiz": 0.0,
       "infeksiya_ko_rsatkich": 0.0,
       "bemor_qoniqish_ball": 0.0,
-      "jihozlar_royxati": [],
+      "jihozlar_royxati": [
+        "Elektrozorez",
+        "Diadinamoterapiya(DDT)"
+      ],
       "asosiy_protseduralar": [],
       "davolanadigan_kasalliklar": [],
       "reanimatsiya_bor": false,
