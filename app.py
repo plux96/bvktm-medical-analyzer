@@ -206,28 +206,19 @@ def save_to_github(data):
 # DATA HELPERS
 # ============================================================================
 def load_data():
-    """GitHub'dan oxirgi versiyani olish + local bilan merge."""
-    local_data = {}
+    """Har doim GitHub'dan oxirgi versiyani olish. Lokal faylga ishonmaymiz."""
+    gh_data, _ = load_from_github()
+    if gh_data:
+        return gh_data
+    # GitHub'dan olish imkoni bo'lmasa — lokal fallback
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             try:
                 local_data = json.load(f)
+                if local_data:
+                    return local_data
             except Exception:
-                local_data = {}
-
-    gh_data, _ = load_from_github()
-
-    if gh_data and local_data:
-        # Ikkalasini merge qilish — hech kim ma'lumoti yo'qolmaydi
-        merged = _deep_merge(gh_data, local_data)
-        save_data_local(merged)
-        return merged
-    elif gh_data:
-        save_data_local(gh_data)
-        return gh_data
-    elif local_data:
-        return local_data
-
+                pass
     return copy.deepcopy(BARCHA_BOLIMLAR)
 
 
@@ -661,17 +652,15 @@ with st.sidebar:
     st.caption(str(round(pct_done, 1)) + "% tayyor")
     st.markdown("---")
 
-    # SAVE button
+    # SAVE button — FAQAT GitHub'ga merge bilan saqlaydi
     if st.button("SAQLASH", type="primary", use_container_width=True):
-        save_data(st.session_state["data"])
         ok, msg = save_to_github(st.session_state["data"])
         if ok:
-            st.success("Saqlandi! (lokal + GitHub)")
+            st.success(msg)
         else:
-            st.warning("Lokal saqlandi. GitHub: " + msg)
-
-    # AUTO-SAVE on every interaction
-    save_data(st.session_state["data"])
+            st.error("Xato: " + msg)
+            # Fallback: lokal saqlash
+            save_data(st.session_state["data"])
 
     # Download JSON
     st.download_button(
