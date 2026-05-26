@@ -1329,7 +1329,9 @@
         "Traksion tortish krovati",
         "Shok to'lqini terapiyasi(Udarno-volnovaya terapiya). Uqalash(Massaj)"
       ],
-      "asosiy_protseduralar": [],
+      "asosiy_protseduralar": [
+        "Fizioterapevtik muolajalar. Uqalash(massaj)"
+      ],
       "davolanadigan_kasalliklar": [],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
