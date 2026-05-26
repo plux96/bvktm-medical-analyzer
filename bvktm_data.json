@@ -1332,7 +1332,23 @@
       "asosiy_protseduralar": [
         "Fizioterapevtik muolajalar. Uqalash(massaj)"
       ],
-      "davolanadigan_kasalliklar": [],
+      "davolanadigan_kasalliklar": [
+        "Koksartroz",
+        "Osteoxondroz",
+        "Artroz",
+        "artrit",
+        "Disk churrasi",
+        "Nevrit",
+        "Nevroz",
+        "Nevralgiya",
+        "Surunkali gastrit",
+        "Surunkali oshqozon yara kasalliklari",
+        "stomatit",
+        "Bronxial astma",
+        "Pnevmoniya",
+        "Tovon shporasi",
+        "Surunkali prostatit va boshqa kasalliklar"
+      ],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
       "byudjet": 0,
