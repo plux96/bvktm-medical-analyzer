@@ -1378,7 +1378,7 @@
       "hamshiralar_soni": 9,
       "kichik_tibbiy_xodimlar": 8,
       "tashkil_etilgan_yil": 1978,
-      "qavat": 0,
+      "qavat": 1,
       "xonalar_raqami": "",
       "maydon_m2": 338.5,
       "telefon": "+998 93 623 88 77",
@@ -1419,7 +1419,9 @@
       "yangi_texnologiyalar": [
         "Laparaskopik koloproktologik operatsiyalar"
       ],
-      "rejalashtirilgan_yangiliklar": []
+      "rejalashtirilgan_yangiliklar": [
+        "Laparaskopik koloproktologik operatsiyalarni kengroq tadbiq qilish"
+      ]
     }
   ],
   "kadrlar": {
