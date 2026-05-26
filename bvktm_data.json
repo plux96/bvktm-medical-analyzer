@@ -1362,6 +1362,64 @@
       "talim_baza": false,
       "yangi_texnologiyalar": [],
       "rejalashtirilgan_yangiliklar": []
+    },
+    {
+      "nomi": "Koloproktologiya",
+      "nomi_ru": "Колопроктология",
+      "nomi_en": "Colopro",
+      "turi": "",
+      "boshlig_ismi": "Saidov Xamid Rustamovich",
+      "boshlig_ilmiy_darajasi": "",
+      "boshlig_telefon": "+998 93 623 88 77",
+      "boshlig_tajriba_yil": 15,
+      "karavotlar_soni": 18,
+      "xodimlar_soni": 21,
+      "shifokorlar_soni": 4,
+      "hamshiralar_soni": 9,
+      "kichik_tibbiy_xodimlar": 8,
+      "tashkil_etilgan_yil": 1978,
+      "qavat": 0,
+      "xonalar_raqami": "",
+      "maydon_m2": 338.5,
+      "telefon": "+998 93 623 88 77",
+      "ish_vaqti": "08 30 dan 16 00 gacha",
+      "bemorlar_kuniga": 16,
+      "bemorlar_oyiga": 64,
+      "bemorlar_yiliga": 690,
+      "operatsiyalar_yiliga": 430,
+      "ortacha_yotish_kun": 6.5,
+      "karavot_bandlik_foiz": 86.0,
+      "o_lim_ko_rsatkich": 0.0,
+      "qayta_yotqizish_foiz": 0.05,
+      "infeksiya_ko_rsatkich": 0.0,
+      "bemor_qoniqish_ball": 95.0,
+      "jihozlar_royxati": [
+        "Laxta millon lazer apparati",
+        "Elektrokaugulyator",
+        "Elektrootsos",
+        "xirurgik anjomlar to'plami"
+      ],
+      "asosiy_protseduralar": [
+        "Barcha Koloproktologik operatsiya va manipulyatsiyalar"
+      ],
+      "davolanadigan_kasalliklar": [
+        "Barcha 18 yoshdan kattalardagi koloproktologik kasalliklar"
+      ],
+      "reanimatsiya_bor": false,
+      "operatsiya_xonasi_bor": true,
+      "byudjet": 0,
+      "daromad": 1200000000,
+      "akkreditatsiya_bor": false,
+      "oxirgi_remont_yili": 2025,
+      "holat_bahosi": 8,
+      "kunduzgi_statsionar": true,
+      "navbatchilik_bor": true,
+      "ilmiy_faoliyat": true,
+      "talim_baza": true,
+      "yangi_texnologiyalar": [
+        "Laparaskopik koloproktologik operatsiyalar"
+      ],
+      "rejalashtirilgan_yangiliklar": []
     }
   ],
   "kadrlar": {
