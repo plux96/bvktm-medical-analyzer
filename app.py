@@ -14,6 +14,7 @@ import base64
 import requests
 from datetime import datetime
 from data_schema import BARCHA_BOLIMLAR, _bolim_shablon, _raqobatchi_shablon
+from field_guide import FIELD_LABELS, FIELD_HELP, SECTION_GUIDES
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "bvktm_data.json")
 GITHUB_REPO = "plux96/bvktm-medical-analyzer"
@@ -185,11 +186,22 @@ def set_val(key, value):
 # WIDGET HELPERS
 # ============================================================================
 def _nice_label(field_key):
-    """Convert field_key to human-readable label."""
+    """Convert field_key to human-readable label using FIELD_LABELS dict."""
     parts = field_key.split(".")
     name = parts[-1]
+    # Look up in FIELD_LABELS first
+    if name in FIELD_LABELS:
+        return FIELD_LABELS[name]
+    # Fallback: auto-generate from key
     label = name.replace("_", " ").capitalize()
     return label
+
+
+def _get_help(field_key):
+    """Get help text for a field from FIELD_HELP dict."""
+    parts = field_key.split(".")
+    name = parts[-1]
+    return FIELD_HELP.get(name, "")
 
 
 def num(label, key, min_val=0, max_val=None, step=1, is_float=False, help_text=""):
@@ -318,29 +330,30 @@ def auto_render_field(field_name, field_default, key_prefix):
     """Automatically render the right widget based on field name and default type."""
     full_key = key_prefix + "." + field_name
     label = _nice_label(full_key)
+    help_text = _get_help(full_key)
 
     if isinstance(field_default, bool):
-        yn(label, full_key)
+        yn(label, full_key, help_text=help_text)
 
     elif isinstance(field_default, list):
-        tags(label, full_key)
+        tags(label, full_key, help_text=help_text)
 
     elif isinstance(field_default, str):
-        txt(label, full_key)
+        txt(label, full_key, help_text=help_text)
 
     elif isinstance(field_default, float):
         if field_name.endswith(FOIZ_SUFFIX):
-            pct(label, full_key)
+            pct(label, full_key, help_text=help_text)
         else:
-            num(label, full_key, is_float=True)
+            num(label, full_key, is_float=True, help_text=help_text)
 
     elif isinstance(field_default, int):
         if _is_money_key(field_name):
-            money(label, full_key)
+            money(label, full_key, help_text=help_text)
         elif _is_score_key(field_name):
-            slider_widget(label, full_key, min_v=0, max_v=10)
+            slider_widget(label, full_key, min_v=0, max_v=10, help_text=help_text)
         else:
-            num(label, full_key)
+            num(label, full_key, help_text=help_text)
 
     elif isinstance(field_default, dict):
         # Nested dict -- render as sub-expander
@@ -349,7 +362,7 @@ def auto_render_field(field_name, field_default, key_prefix):
             auto_render_dict(field_default, full_key)
 
     else:
-        txt(label, full_key)
+        txt(label, full_key, help_text=help_text)
 
 
 def auto_render_dict(schema_dict, key_prefix):
@@ -617,6 +630,45 @@ selected_key = SECTION_KEYS[selected_idx]
 header_text = SECTION_HEADERS.get(selected_key, selected_key)
 st.header(header_text)
 
+# Info box at the top of each section
+_section_brief = {
+    "markaz_profili": "Markazning rasmiy nomi, rahbariyat, manzil, reyting va umumiy sonlarni kiriting.",
+    "bolimlar": "27 ta bo'limning har biri uchun boshlig'i, xodimlar, karavotlar va statistikani kiriting.",
+    "kadrlar": "Xodimlar tarkibi, ilmiy darajalar, maoshlar va kadrlar yetishmasligini kiriting.",
+    "tibbiy_jihozlar": "MRT, KT, UZI va barcha tibbiy jihozlar soni, holati va texnik xizmatini kiriting.",
+    "toshak_fondi": "Bo'limlar bo'yicha karavotlar taqsimoti va oylik bandlik statistikasini kiriting.",
+    "poliklinika": "Ambulator qabul sig'imi, tashriflar, kutish vaqti va xizmatlar mavjudligini kiriting.",
+    "jarrohlik": "Operatsiya xonalari, operatsiyalar soni, sifat va anesteziya ko'rsatkichlarini kiriting.",
+    "diagnostika": "Laboratoriya testlari, tasvir diagnostikasi va natija berish vaqtlarini kiriting.",
+    "dori_darmon": "Dorixona, dori byudjeti, antibiotik siyosati va saqlash sharoitini kiriting.",
+    "moliya": "Daromadlar, xarajatlar, investitsiyalar va moliyaviy audit ma'lumotlarini kiriting.",
+    "bemorlar_statistikasi": "Statsionar/ambulator bemorlar, demografiya, o'lim va shikoyat statistikasini kiriting.",
+    "sifat_korsatkichlari": "WHO KPI: o'lim, infeksiya, kutish vaqti, muvofiqlik ko'rsatkichlarini kiriting.",
+    "shoshilinch_yordam": "Tez yordam, shoshilinch bo'lim, javob vaqtlari va ofat tayorgarligini kiriting.",
+    "infratuzilma": "Bino, energiya, suv, yong'in xavfsizligi va yordamchi xizmatlarni kiriting.",
+    "it_raqamlashtirish": "HIS, EMR, internet, kompyuterlar va kiberxavfsizlik ma'lumotlarini kiriting.",
+    "xalqaro_hamkorlik": "Xalqaro hamkorlar, loyihalar, tibbiy turizm va sertifikatlarni kiriting.",
+    "talim_ilmfan": "Ta'lim bazasi, ilmiy maqolalar, dissertatsiyalar va grantlarni kiriting.",
+    "bemor_qoniqishi": "Qoniqish ballari, shikoyatlar, NPS va media eslatmalarni kiriting.",
+    "infeksiya_nazorati": "Infeksiya foizlari, gigiena, sterilizatsiya va skrining ma'lumotlarini kiriting.",
+    "qon_banki": "Qon toplash, komponentlar tayyorlash, skrining va zaxiralarni kiriting.",
+    "reanimatsiya_intensiv": "RIT karavotlar, jihozlar, sifat va protokollar ma'lumotlarini kiriting.",
+    "reabilitatsiya": "Reabilitatsiya turlari, kadrlar, jihozlar va natijalarni kiriting.",
+    "inson_resurslari": "Yollash, saqlash, baholash va ijtimoiy ta'minot ma'lumotlarini kiriting.",
+    "xavfsizlik": "Qorovul, kameralar, yong'in, ofat tayorgarligi va hodisalarni kiriting.",
+    "ekologiya": "Chiqindi boshqarish, energiya tejash va ekologik audit ma'lumotlarini kiriting.",
+    "raqobatchilar": "Raqobatchi kasalxonalar haqida taqqoslash ma'lumotlarini kiriting.",
+    "hududiy_salomatlik": "Viloyat aholisi salomatligi, kasalliklar tarqalishi va resurslarni kiriting.",
+    "davlat_dasturlari": "DSTI, bepul yordam kvotalari va milliy dasturlarga ishtirokni kiriting.",
+    "telemedicina": "Telemedicina platformasi, konsultatsiyalar va qamrov ma'lumotlarini kiriting.",
+    "kelajak_rejalari": "Qisqa, o'rta, uzoq muddatli rejalar va KPI maqsadlarini kiriting.",
+    "qonunchilik": "Litsenziyalar, akkreditatsiya, audit va huquqiy muvofiqlikni kiriting.",
+    "simulyatsiya_maqsadlari": "AI tahlil uchun maqsad vaznlari, cheklovlar va stsenariylarni kiriting.",
+}
+_brief = _section_brief.get(selected_key, "")
+if _brief:
+    st.info(_brief)
+
 if selected_key == "bolimlar":
     render_list_section("bolimlar", _bolim_shablon, "Bo'lim")
 
@@ -635,6 +687,12 @@ else:
         auto_render_dict(schema, selected_key)
     else:
         st.warning("Bu bo'lim uchun maxsus renderer kerak.")
+
+# Section guide at bottom
+_guide_text = SECTION_GUIDES.get(selected_key, "")
+if _guide_text:
+    with st.expander("Yo'riqnoma - bu bo'limni qanday to'ldirish kerak", expanded=False):
+        st.markdown(_guide_text)
 
 # Auto-save after rendering
 save_data(st.session_state["data"])
