@@ -89,6 +89,72 @@ def load_from_github():
         return {}, ""
 
 
+def _is_filled(val):
+    """Qiymat to'ldirilganmi (default emas)."""
+    if isinstance(val, bool):
+        return val
+    if isinstance(val, (int, float)):
+        return val != 0
+    if isinstance(val, str):
+        return val.strip() != ""
+    if isinstance(val, list):
+        return len(val) > 0
+    if isinstance(val, dict):
+        return any(_is_filled(v) for v in val.values())
+    return False
+
+
+def _deep_merge(remote, local):
+    """Remote + local ni birlashtirish. Local'da to'ldirilgan maydonlar ustunlik oladi.
+    Remote'da to'ldirilgan lekin local'da bo'sh — remote qoladi."""
+    if not isinstance(remote, dict) or not isinstance(local, dict):
+        # Agar local to'ldirilgan bo'lsa — local oladi
+        if _is_filled(local):
+            return copy.deepcopy(local)
+        return copy.deepcopy(remote)
+
+    merged = copy.deepcopy(remote)
+    for key, local_val in local.items():
+        if key not in merged:
+            merged[key] = copy.deepcopy(local_val)
+            continue
+
+        remote_val = merged[key]
+
+        if isinstance(local_val, dict) and isinstance(remote_val, dict):
+            merged[key] = _deep_merge(remote_val, local_val)
+        elif isinstance(local_val, list) and isinstance(remote_val, list):
+            # List: agar local uzunroq yoki to'ldirilgan — local oladi
+            if len(local_val) > len(remote_val):
+                merged[key] = copy.deepcopy(local_val)
+            elif len(local_val) == len(remote_val):
+                # Har bir elementni merge qilish
+                result = []
+                for i in range(len(local_val)):
+                    if isinstance(local_val[i], dict) and isinstance(remote_val[i], dict):
+                        result.append(_deep_merge(remote_val[i], local_val[i]))
+                    elif _is_filled(local_val[i]):
+                        result.append(copy.deepcopy(local_val[i]))
+                    else:
+                        result.append(copy.deepcopy(remote_val[i]))
+                merged[key] = result
+            else:
+                # Remote uzunroq — remote qoladi, lekin local elementlarni merge
+                result = copy.deepcopy(remote_val)
+                for i in range(len(local_val)):
+                    if isinstance(local_val[i], dict) and isinstance(result[i], dict):
+                        result[i] = _deep_merge(result[i], local_val[i])
+                    elif _is_filled(local_val[i]):
+                        result[i] = copy.deepcopy(local_val[i])
+                merged[key] = result
+        else:
+            # Oddiy qiymat: local to'ldirilgan bo'lsa — local oladi
+            if _is_filled(local_val):
+                merged[key] = copy.deepcopy(local_val)
+            # Aks holda remote qoladi
+    return merged
+
+
 def save_to_github(data):
     token = get_github_token()
     if not token:
@@ -99,21 +165,38 @@ def save_to_github(data):
             "Authorization": "token " + token,
             "Accept": "application/vnd.github.v3+json",
         }
+        # 1. Avval remote'dan oxirgi versiyani olish
         resp = requests.get(url, headers=headers, timeout=10)
-        sha = resp.json().get("sha", "") if resp.status_code == 200 else ""
+        sha = ""
+        remote_data = {}
+        if resp.status_code == 200:
+            sha = resp.json().get("sha", "")
+            remote_content = base64.b64decode(resp.json()["content"]).decode("utf-8")
+            remote_data = json.loads(remote_content)
+
+        # 2. MERGE: remote + local = birlashtirilgan
+        if remote_data:
+            merged = _deep_merge(remote_data, data)
+        else:
+            merged = data
+
+        # 3. Session state'ni ham yangilash (boshqa odam qo'shgan ma'lumotlar ko'rinsin)
+        st.session_state["data"] = merged
+
+        # 4. GitHub'ga saqlash
         content = base64.b64encode(
-            json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
+            json.dumps(merged, ensure_ascii=False, indent=2).encode("utf-8")
         ).decode("utf-8")
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
         payload = {
-            "message": "Data updated: " + now_str,
+            "message": "Data merged: " + now_str,
             "content": content,
         }
         if sha:
             payload["sha"] = sha
         resp = requests.put(url, headers=headers, json=payload, timeout=15)
         if resp.status_code in (200, 201):
-            return True, "GitHub'ga saqlandi!"
+            return True, "GitHub'ga saqlandi! (merge bilan)"
         return False, "Xatolik: " + str(resp.status_code)
     except Exception as e:
         return False, str(e)
@@ -123,18 +206,28 @@ def save_to_github(data):
 # DATA HELPERS
 # ============================================================================
 def load_data():
+    """GitHub'dan oxirgi versiyani olish + local bilan merge."""
+    local_data = {}
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r", encoding="utf-8") as f:
             try:
                 local_data = json.load(f)
-                if local_data:
-                    return local_data
             except Exception:
-                pass
+                local_data = {}
+
     gh_data, _ = load_from_github()
-    if gh_data:
+
+    if gh_data and local_data:
+        # Ikkalasini merge qilish — hech kim ma'lumoti yo'qolmaydi
+        merged = _deep_merge(gh_data, local_data)
+        save_data_local(merged)
+        return merged
+    elif gh_data:
         save_data_local(gh_data)
         return gh_data
+    elif local_data:
+        return local_data
+
     return copy.deepcopy(BARCHA_BOLIMLAR)
 
 
