@@ -1424,7 +1424,7 @@
         "oyoq arteriyasi stenozi va okklyziyasi",
         "bachadon miomasi"
       ],
-      "reanimatsiya_bor": true,
+      "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
       "byudjet": 10,
       "daromad": 200000000,
@@ -1504,7 +1504,7 @@
       "daromad": 59500000,
       "akkreditatsiya_bor": false,
       "oxirgi_remont_yili": 2026,
-      "holat_bahosi": 0,
+      "holat_bahosi": 9,
       "kunduzgi_statsionar": true,
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
