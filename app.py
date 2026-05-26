@@ -155,51 +155,77 @@ def _deep_merge(remote, local):
     return merged
 
 
-def save_to_github(data):
+def _github_fetch(headers, url):
+    """GitHub'dan faylni olish. (sha, data) qaytaradi."""
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        if resp.status_code == 200:
+            body = resp.json()
+            sha = body.get("sha", "")
+            content = base64.b64decode(body["content"]).decode("utf-8")
+            return sha, json.loads(content)
+    except Exception:
+        pass
+    return "", {}
+
+
+def _github_put(headers, url, sha, merged_data, attempt):
+    """GitHub'ga yozish. True/False qaytaradi."""
+    content = base64.b64encode(
+        json.dumps(merged_data, ensure_ascii=False, indent=2).encode("utf-8")
+    ).decode("utf-8")
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    payload = {
+        "message": "Data save #" + str(attempt) + ": " + now_str,
+        "content": content,
+    }
+    if sha:
+        payload["sha"] = sha
+    resp = requests.put(url, headers=headers, json=payload, timeout=15)
+    return resp.status_code
+
+
+def save_to_github(data, max_retries=3):
+    """GitHub'ga saqlash: fetch → merge → save. 409 conflict bo'lsa retry."""
     token = get_github_token()
     if not token:
-        return False, "GitHub token topilmadi. Secrets'ga GITHUB_TOKEN qo'shing."
-    try:
-        url = "https://api.github.com/repos/{}/contents/{}".format(GITHUB_REPO, GITHUB_FILE)
-        headers = {
-            "Authorization": "token " + token,
-            "Accept": "application/vnd.github.v3+json",
-        }
-        # 1. Avval remote'dan oxirgi versiyani olish
-        resp = requests.get(url, headers=headers, timeout=10)
-        sha = ""
-        remote_data = {}
-        if resp.status_code == 200:
-            sha = resp.json().get("sha", "")
-            remote_content = base64.b64decode(resp.json()["content"]).decode("utf-8")
-            remote_data = json.loads(remote_content)
+        return False, "GITHUB_TOKEN topilmadi!"
 
-        # 2. MERGE: remote + local = birlashtirilgan
-        if remote_data:
-            merged = _deep_merge(remote_data, data)
-        else:
-            merged = data
+    url = "https://api.github.com/repos/{}/contents/{}".format(GITHUB_REPO, GITHUB_FILE)
+    headers = {
+        "Authorization": "token " + token,
+        "Accept": "application/vnd.github.v3+json",
+    }
 
-        # 3. Session state'ni ham yangilash (boshqa odam qo'shgan ma'lumotlar ko'rinsin)
-        st.session_state["data"] = merged
+    for attempt in range(1, max_retries + 1):
+        try:
+            # 1. GitHub'dan oxirgi versiya
+            sha, remote_data = _github_fetch(headers, url)
 
-        # 4. GitHub'ga saqlash
-        content = base64.b64encode(
-            json.dumps(merged, ensure_ascii=False, indent=2).encode("utf-8")
-        ).decode("utf-8")
-        now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
-        payload = {
-            "message": "Data merged: " + now_str,
-            "content": content,
-        }
-        if sha:
-            payload["sha"] = sha
-        resp = requests.put(url, headers=headers, json=payload, timeout=15)
-        if resp.status_code in (200, 201):
-            return True, "GitHub'ga saqlandi! (merge bilan)"
-        return False, "Xatolik: " + str(resp.status_code)
-    except Exception as e:
-        return False, str(e)
+            # 2. Merge
+            if remote_data:
+                merged = _deep_merge(remote_data, data)
+            else:
+                merged = copy.deepcopy(data)
+
+            # 3. Saqlash
+            status = _github_put(headers, url, sha, merged, attempt)
+
+            if status in (200, 201):
+                # 4. Session'ni ham yangilash
+                st.session_state["data"] = merged
+                return True, "Saqlandi! (" + str(attempt) + "-urinish)"
+            elif status == 409:
+                # SHA eski — qayta urinish
+                import time
+                time.sleep(0.5)
+                continue
+            else:
+                return False, "GitHub xato: " + str(status)
+        except Exception as e:
+            return False, "Xato: " + str(e)
+
+    return False, "3 marta urinildi, saqlanmadi. Qayta urinib ko'ring."
 
 
 # ============================================================================
@@ -652,15 +678,26 @@ with st.sidebar:
     st.caption(str(round(pct_done, 1)) + "% tayyor")
     st.markdown("---")
 
-    # SAVE button — FAQAT GitHub'ga merge bilan saqlaydi
+    # SAQLASH — GitHub'ga merge bilan
     if st.button("SAQLASH", type="primary", use_container_width=True):
         ok, msg = save_to_github(st.session_state["data"])
         if ok:
             st.success(msg)
+            st.rerun()
         else:
-            st.error("Xato: " + msg)
-            # Fallback: lokal saqlash
-            save_data(st.session_state["data"])
+            st.error(msg)
+
+    # YANGILASH — boshqa odamlarning ma'lumotlarini olish
+    if st.button("YANGILASH (sync)", use_container_width=True):
+        gh_data, _ = load_from_github()
+        if gh_data:
+            local = st.session_state["data"]
+            merged = _deep_merge(gh_data, local)
+            st.session_state["data"] = merged
+            st.success("Yangilandi! Boshqa odamlar kiritgan ma'lumotlar yuklandi.")
+            st.rerun()
+        else:
+            st.warning("GitHub'dan olishda xato.")
 
     # Download JSON
     st.download_button(
