@@ -1139,7 +1139,9 @@
         "Statsionar rentgen apparat-1",
         "Portativ rentgen apparat -2.\" C\" duga rentgen apparat- 3. UZI apparat-4"
       ],
-      "asosiy_protseduralar": [],
+      "asosiy_protseduralar": [
+        "Diagnostik protseduralar"
+      ],
       "davolanadigan_kasalliklar": [],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
@@ -1152,7 +1154,10 @@
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
       "talim_baza": true,
-      "yangi_texnologiyalar": [],
+      "yangi_texnologiyalar": [
+        "MRT mamografiya",
+        "Uch shohl nervini MRT tekshiruvi"
+      ],
       "rejalashtirilgan_yangiliklar": []
     },
     {
