@@ -60,8 +60,7 @@ SECTION_LABELS = {
 
 SECTION_KEYS = list(SECTION_LABELS.keys())
 
-# Field name -> human-readable label mapping
-FIELD_LABELS = {}  # auto-generated from key names
+# FIELD_LABELS, FIELD_HELP, SECTION_GUIDES imported from field_guide.py (17-qator)
 
 
 # ============================================================================
