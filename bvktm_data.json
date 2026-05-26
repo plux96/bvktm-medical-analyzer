@@ -1297,10 +1297,31 @@
         "Elektro uyqu",
         "Tubus kvars",
         "Ultrabinafsha nurlanish(UFO)",
-        "Traksion tortish krovati"
+        "Traksion tortish krovati",
+        "Parafin",
+        "Ingalyatsiya."
       ],
-      "asosiy_protseduralar": [],
-      "davolanadigan_kasalliklar": [],
+      "asosiy_protseduralar": [
+        "Fizioterapevtik muolajalar",
+        "uqalash(massaj)"
+      ],
+      "davolanadigan_kasalliklar": [
+        "Koksoartroz",
+        "Osteoxondroz",
+        "Artroz",
+        "Artrit",
+        "Disk churrasi",
+        "Nevrit",
+        "Surunkali prostatit",
+        "Pnevmoniya",
+        "Bronxial astma",
+        "Surunkali oshqozon yara kasalliklari",
+        "Nevroz",
+        "Surunkali gastrit",
+        "Tovon shporasi",
+        "Nevralgiya",
+        "Stomatit."
+      ],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
       "byudjet": 0,
