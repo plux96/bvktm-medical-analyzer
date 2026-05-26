@@ -298,28 +298,28 @@
       "boshlig_ismi": "",
       "boshlig_ilmiy_darajasi": "",
       "boshlig_telefon": "",
-      "boshlig_tajriba_yil": 36,
-      "karavotlar_soni": 25,
+      "boshlig_tajriba_yil": 0,
+      "karavotlar_soni": 0,
       "xodimlar_soni": 0,
-      "shifokorlar_soni": 4,
-      "hamshiralar_soni": 9,
-      "kichik_tibbiy_xodimlar": 8,
-      "tashkil_etilgan_yil": 19,
-      "qavat": 3,
+      "shifokorlar_soni": 0,
+      "hamshiralar_soni": 0,
+      "kichik_tibbiy_xodimlar": 0,
+      "tashkil_etilgan_yil": 0,
+      "qavat": 0,
       "xonalar_raqami": "",
       "maydon_m2": 0.0,
       "telefon": "",
       "ish_vaqti": "",
       "bemorlar_kuniga": 0,
-      "bemorlar_oyiga": 100,
-      "bemorlar_yiliga": 1003,
+      "bemorlar_oyiga": 0,
+      "bemorlar_yiliga": 0,
       "operatsiyalar_yiliga": 0,
       "ortacha_yotish_kun": 0.0,
       "karavot_bandlik_foiz": 0.0,
       "o_lim_ko_rsatkich": 0.0,
       "qayta_yotqizish_foiz": 0.0,
-      "infeksiya_ko_rsatkich": 100.0,
-      "bemor_qoniqish_ball": 96.0,
+      "infeksiya_ko_rsatkich": 0.0,
+      "bemor_qoniqish_ball": 0.0,
       "jihozlar_royxati": [],
       "asosiy_protseduralar": [],
       "davolanadigan_kasalliklar": [],
@@ -603,24 +603,8 @@
       "infeksiya_ko_rsatkich": 0.0,
       "bemor_qoniqish_ball": 100.0,
       "jihozlar_royxati": [],
-      "asosiy_protseduralar": [
-        "-Konservativ davolash-antikoagulyantlar",
-        "trombolitiklar",
-        "statinlar",
-        "hayot tarzini o‘zgartirish  -Xirurgik davolash-shuntlash operatsiyalari",
-        "endarterektomiya",
-        "angioplastika muolajalar -Gibrid operatsiyalar: An'anaviy ochiq jarrohlik va endovaskulyar usullarni birlashtirish.  -Anevrizmalarni protezlash: Zararlangan qismni sun'iy tomir bilan almashtirish. -Lazer va radiochastotali ablyatsiya: Varikoz venalarni minimal invaziv yo'l bilan bartaraf etish."
-      ],
-      "davolanadigan_kasalliklar": [
-        "1. Arterial patologiyalar - Oyoq arteriyalari aterosklrotik stenozlovchi va okklyuzion kasalliklar",
-        "Obliteratsiyalovchi kasalliklar",
-        "qorin aortasi anevrizmalar",
-        "uyqu arteriyalari aterosklrotik stenozi",
-        "uyqu arteriyalari egriliklari. 2. Venoz patologiyalar – oyoq venalari varikoz kasalligi",
-        "oyoq yuza venalar tromboflebiti",
-        "oyoq va qo‘l venalari chuqur vena trombozi",
-        "posttromboflebitik sindrom kasalligi. 3. Qo‘l va oyoq limfostaz kasalliklari."
-      ],
+      "asosiy_protseduralar": [],
+      "davolanadigan_kasalliklar": [],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
       "byudjet": 55000000,
@@ -632,12 +616,8 @@
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
       "talim_baza": true,
-      "yangi_texnologiyalar": [
-        "Oyoq arteriyalari okklyuzion kasalliklarda rekostruktiv (shuntlash yoki protezlash) operatsiyalar: Murakkab yonbosh-son arteriyasini ChIZIKLI shuntlash (protez)  operatsiyalarini markaz mutaxassislari tomonidan yo‘lga qo‘yildi."
-      ],
-      "rejalashtirilgan_yangiliklar": [
-        "Aorta anevrizmalari va yenbosh arterilar okklyuzion kasalliklarida: murakkab aorta-son bifurkatsion shuntlash (protez)  operatsiyalarini markaz mutaxassislari tomonidan yo‘lga qo‘yish."
-      ]
+      "yangi_texnologiyalar": [],
+      "rejalashtirilgan_yangiliklar": []
     },
     {
       "nomi": "Travmatologiya",
@@ -1421,7 +1401,7 @@
       "nomi_en": "Purulent surgery",
       "turi": "Byudjet",
       "boshlig_ismi": "Mardonov Jonibek No'monovich",
-      "boshlig_ilmiy_darajasi": "",
+      "boshlig_ilmiy_darajasi": "PhD",
       "boshlig_telefon": "94.124-60-06",
       "boshlig_tajriba_yil": 2025,
       "karavotlar_soni": 25,
@@ -1431,9 +1411,9 @@
       "kichik_tibbiy_xodimlar": 14,
       "tashkil_etilgan_yil": 2001,
       "qavat": 3,
-      "xonalar_raqami": "",
+      "xonalar_raqami": "7",
       "maydon_m2": 702.34,
-      "telefon": "",
+      "telefon": "65.221-74-82",
       "ish_vaqti": "8:30-16:12",
       "bemorlar_kuniga": 7,
       "bemorlar_oyiga": 110,
@@ -1441,9 +1421,9 @@
       "operatsiyalar_yiliga": 0,
       "ortacha_yotish_kun": 6.0,
       "karavot_bandlik_foiz": 80.0,
-      "o_lim_ko_rsatkich": 3.0,
+      "o_lim_ko_rsatkich": 1.0,
       "qayta_yotqizish_foiz": 15.0,
-      "infeksiya_ko_rsatkich": 0.0,
+      "infeksiya_ko_rsatkich": 5.0,
       "bemor_qoniqish_ball": 0.0,
       "jihozlar_royxati": [],
       "asosiy_protseduralar": [
@@ -1467,67 +1447,8 @@
         "Autodermoplastika"
       ],
       "rejalashtirilgan_yangiliklar": [
-        "Yiringli jarohatlarda yangi metodlarni qo'llash"
-      ]
-    },
-    {
-      "nomi": "Koloproktologiya",
-      "nomi_ru": "Колопроктология",
-      "nomi_en": "Coloproktology",
-      "turi": "",
-      "boshlig_ismi": "Saidov Xamid Rustamovich",
-      "boshlig_ilmiy_darajasi": "",
-      "boshlig_telefon": "+998 93 623 88 77",
-      "boshlig_tajriba_yil": 15,
-      "karavotlar_soni": 18,
-      "xodimlar_soni": 21,
-      "shifokorlar_soni": 4,
-      "hamshiralar_soni": 9,
-      "kichik_tibbiy_xodimlar": 8,
-      "tashkil_etilgan_yil": 0,
-      "qavat": 3,
-      "xonalar_raqami": "",
-      "maydon_m2": 338.5,
-      "telefon": "+998 93 623 88 77",
-      "ish_vaqti": "8 30 dan   16 00 gacha",
-      "bemorlar_kuniga": 18,
-      "bemorlar_oyiga": 64,
-      "bemorlar_yiliga": 695,
-      "operatsiyalar_yiliga": 430,
-      "ortacha_yotish_kun": 6.5,
-      "karavot_bandlik_foiz": 86.0,
-      "o_lim_ko_rsatkich": 0.0,
-      "qayta_yotqizish_foiz": 0.05,
-      "infeksiya_ko_rsatkich": 0.0,
-      "bemor_qoniqish_ball": 95.0,
-      "jihozlar_royxati": [
-        "Laxta Millon lazer apparati",
-        "Elektrokaugulyator",
-        "Elektrootsos",
-        "Xirurgik anjomlar to'plami"
-      ],
-      "asosiy_protseduralar": [
-        "Koloproktologik barcha operatsiya va manipulyatsiyalar"
-      ],
-      "davolanadigan_kasalliklar": [
-        "Koloproktologik barcha kasalliklar"
-      ],
-      "reanimatsiya_bor": false,
-      "operatsiya_xonasi_bor": true,
-      "byudjet": 0,
-      "daromad": 1200000000,
-      "akkreditatsiya_bor": false,
-      "oxirgi_remont_yili": 2025,
-      "holat_bahosi": 8,
-      "kunduzgi_statsionar": true,
-      "navbatchilik_bor": true,
-      "ilmiy_faoliyat": true,
-      "talim_baza": true,
-      "yangi_texnologiyalar": [
-        "Yo'g'on ichakda bajariladigan laparaskopik operatsiyalar"
-      ],
-      "rejalashtirilgan_yangiliklar": [
-        "Yo'g'on ichakda bajariladigan laparaskopik operatsiyalarni kengroq tadbiq qilish"
+        "Yiringli jarohatlarda yangi metodlarni qo'llash",
+        "Vakuumterapiyani yo'lga qo'yish"
       ]
     }
   ],
