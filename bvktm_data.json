@@ -1425,7 +1425,9 @@
       "qayta_yotqizish_foiz": 15.0,
       "infeksiya_ko_rsatkich": 5.0,
       "bemor_qoniqish_ball": 0.0,
-      "jihozlar_royxati": [],
+      "jihozlar_royxati": [
+        "88"
+      ],
       "asosiy_protseduralar": [
         "Operatsiyalar va davolash"
       ],
