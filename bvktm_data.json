@@ -1248,7 +1248,7 @@
       "oxirgi_remont_yili": 0,
       "holat_bahosi": 0,
       "kunduzgi_statsionar": false,
-      "navbatchilik_bor": false,
+      "navbatchilik_bor": true,
       "ilmiy_faoliyat": false,
       "talim_baza": false,
       "yangi_texnologiyalar": [],
