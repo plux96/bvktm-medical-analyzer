@@ -1307,7 +1307,7 @@
       "shifokorlar_soni": 5,
       "hamshiralar_soni": 17,
       "kichik_tibbiy_xodimlar": 7,
-      "tashkil_etilgan_yil": 0,
+      "tashkil_etilgan_yil": 1940,
       "qavat": 1,
       "xonalar_raqami": "",
       "maydon_m2": 295.29,
@@ -1358,7 +1358,13 @@
         "Surunqali oshqozon kasalliklari",
         "Disk churralari",
         "Bronxial astma",
-        "Pnevmoniya"
+        "Pnevmoniya",
+        "Surunkali prostatit",
+        "Tovon shporasi",
+        "Laringit",
+        "Stomatit",
+        "Artrit",
+        "O'pkaning surunkali obstruktiv kasalligi"
       ],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
