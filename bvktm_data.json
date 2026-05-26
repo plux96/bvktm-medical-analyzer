@@ -179,7 +179,7 @@
       "daromad": 1450000000,
       "akkreditatsiya_bor": true,
       "oxirgi_remont_yili": 2015,
-      "holat_bahosi": 10,
+      "holat_bahosi": 4,
       "kunduzgi_statsionar": true,
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
@@ -188,9 +188,7 @@
         "TMS",
         "ENMG"
       ],
-      "rejalashtirilgan_yangiliklar": [
-        "Reablitatsion xona va lokamotor kompleksi."
-      ]
+      "rejalashtirilgan_yangiliklar": []
     },
     {
       "nomi": "Gastroenterologiya",
@@ -670,9 +668,9 @@
       "boshlig_ismi": "",
       "boshlig_ilmiy_darajasi": "",
       "boshlig_telefon": "",
-      "boshlig_tajriba_yil": 0,
+      "boshlig_tajriba_yil": 15,
       "karavotlar_soni": 0,
-      "xodimlar_soni": 0,
+      "xodimlar_soni": 21,
       "shifokorlar_soni": 0,
       "hamshiralar_soni": 0,
       "kichik_tibbiy_xodimlar": 0,
@@ -1250,7 +1248,7 @@
       "boshlig_ismi": "",
       "boshlig_ilmiy_darajasi": "",
       "boshlig_telefon": "",
-      "boshlig_tajriba_yil": 0,
+      "boshlig_tajriba_yil": 44,
       "karavotlar_soni": 0,
       "xodimlar_soni": 0,
       "shifokorlar_soni": 0,
