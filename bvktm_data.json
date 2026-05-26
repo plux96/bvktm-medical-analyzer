@@ -603,8 +603,24 @@
       "infeksiya_ko_rsatkich": 0.0,
       "bemor_qoniqish_ball": 100.0,
       "jihozlar_royxati": [],
-      "asosiy_protseduralar": [],
-      "davolanadigan_kasalliklar": [],
+      "asosiy_protseduralar": [
+        "-Konservativ davolash-antikoagulyantlar",
+        "trombolitiklar",
+        "statinlar",
+        "hayot tarzini o‘zgartirish  -Xirurgik davolash-shuntlash operatsiyalari",
+        "endarterektomiya",
+        "angioplastika muolajalar -Gibrid operatsiyalar: An'anaviy ochiq jarrohlik va endovaskulyar usullarni birlashtirish.  -Anevrizmalarni protezlash: Zararlangan qismni sun'iy tomir bilan almashtirish. -Lazer va radiochastotali ablyatsiya: Varikoz venalarni minimal invaziv yo'l bilan bartaraf etish."
+      ],
+      "davolanadigan_kasalliklar": [
+        "1. Arterial patologiyalar - Oyoq arteriyalari aterosklrotik stenozlovchi va okklyuzion kasalliklar",
+        "Obliteratsiyalovchi kasalliklar",
+        "qorin aortasi anevrizmalar",
+        "uyqu arteriyalari aterosklrotik stenozi",
+        "uyqu arteriyalari egriliklari. 2. Venoz patologiyalar – oyoq venalari varikoz kasalligi",
+        "oyoq yuza venalar tromboflebiti",
+        "oyoq va qo‘l venalari chuqur vena trombozi",
+        "posttromboflebitik sindrom kasalligi. 3. Qo‘l va oyoq limfostaz kasalliklari."
+      ],
       "reanimatsiya_bor": false,
       "operatsiya_xonasi_bor": false,
       "byudjet": 55000000,
@@ -616,8 +632,12 @@
       "navbatchilik_bor": true,
       "ilmiy_faoliyat": true,
       "talim_baza": true,
-      "yangi_texnologiyalar": [],
-      "rejalashtirilgan_yangiliklar": []
+      "yangi_texnologiyalar": [
+        "Oyoq arteriyalari okklyuzion kasalliklarda rekostruktiv (shuntlash yoki protezlash) operatsiyalar: Murakkab yonbosh-son arteriyasini ChIZIKLI shuntlash (protez)  operatsiyalarini markaz mutaxassislari tomonidan yo‘lga qo‘yildi."
+      ],
+      "rejalashtirilgan_yangiliklar": [
+        "Aorta anevrizmalari va yenbosh arterilar okklyuzion kasalliklarida: murakkab aorta-son bifurkatsion shuntlash (protez)  operatsiyalarini markaz mutaxassislari tomonidan yo‘lga qo‘yish."
+      ]
     },
     {
       "nomi": "Travmatologiya",
